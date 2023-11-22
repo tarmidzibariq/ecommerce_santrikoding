@@ -104,7 +104,7 @@ class CategoryController extends Controller
         Storage::disk('local')->delete('public/categories/'.basename($category->image));
         if ($category->delete()) {
             // return success with Api Resource
-            return new CategoryResource(true, 'Data Category! Berhasil Dihapus', $category);
+            return new CategoryResource(true, 'Data Category! Berhasil Dihapus', null);
         }
         // return failed with Api Resource
         return new CategoryResource(false, 'Data Category Gagal Dihapus', null);

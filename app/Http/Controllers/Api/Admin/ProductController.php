@@ -135,7 +135,7 @@ class ProductController extends Controller
         Storage::disk('local')->delete('public/products/' . basename($product->image));
         if ($product->delete()) {
             // return success with Api Resource
-            return new ProductResource(true, 'Data Product Berhasil Dihapus!', $product);
+            return new ProductResource(true, 'Data Product Berhasil Dihapus!', null);
         }
         // return failed with Api Resource
         return new ProductResource(false, 'Data Product Gagal Dihapus!', null);
