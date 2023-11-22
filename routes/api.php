@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\Admin\LoginController;
 use App\Http\Controllers\Api\Admin\DashboardController;
+use App\Http\Controllers\Api\Admin\CategoryController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -38,5 +39,7 @@ Route::prefix('admin')->group(function () {
         Route::post('/logout', [App\Http\Controllers\Api\Admin\LoginController::class, 'logout', ['as' => 'admin']]);
         // dashboard
         Route::get('/dashboard', [App\Http\Controllers\Api\Admin\DashboardController::class, 'index', ['as' => 'admin']]);
+        // Categories resource
+        Route::apiResource('/categories', App\Http\Controllers\Api\Admin\CategoryController::class, [ 'except' => ['create', 'edit'] , 'as' => 'admin']);
     });
 });
