@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\Admin\DashboardController;
 use App\Http\Controllers\Api\Admin\CategoryController;
 use App\Http\Controllers\Api\Admin\ProductController;
 use App\Http\Controllers\Api\Admin\InvoiceController;
+use App\Http\Controllers\Api\Admin\CustomerController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -47,5 +48,7 @@ Route::prefix('admin')->group(function () {
         Route::apiResource('/products', App\Http\Controllers\Api\Admin\ProductController::class, [ 'except' => ['create', 'edit'] , 'as' => 'admin']);
         // Invoices resource
         Route::apiResource('/invoices', App\Http\Controllers\Api\Admin\InvoiceController::class, [ 'except' => ['create', 'store', 'edit', 'update', 'destroy'] , 'as' => 'admin']);
+        // Customers
+        Route::get('/customers', [App\Http\Controllers\Api\Admin\CustomerController::class, 'index' , ['as' => 'admin']]);
     });
 });
