@@ -11,7 +11,7 @@ class Slider extends Model
     use HasFactory;
     protected $fillable = [
         'image',
-        'link '
+        'link'
     ];
 
     protected function image(): Attribute

@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\Admin\CategoryController;
 use App\Http\Controllers\Api\Admin\ProductController;
 use App\Http\Controllers\Api\Admin\InvoiceController;
 use App\Http\Controllers\Api\Admin\CustomerController;
+use App\Http\Controllers\Api\Admin\SliderController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -50,5 +51,7 @@ Route::prefix('admin')->group(function () {
         Route::apiResource('/invoices', App\Http\Controllers\Api\Admin\InvoiceController::class, [ 'except' => ['create', 'store', 'edit', 'update', 'destroy'] , 'as' => 'admin']);
         // Customers
         Route::get('/customers', [App\Http\Controllers\Api\Admin\CustomerController::class, 'index' , ['as' => 'admin']]);
+        // Sliders
+        Route::apiResource('/sliders', App\Http\Controllers\Api\Admin\SliderController::class, ['except' => ['create', 'show', 'edit', 'update'], 'as' => 'admin']);
     });
 });
