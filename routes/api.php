@@ -7,7 +7,7 @@ use App\Http\Controllers\Api\Admin\ProductController;
 use App\Http\Controllers\Api\Admin\InvoiceController;
 use App\Http\Controllers\Api\Admin\CustomerController;
 use App\Http\Controllers\Api\Admin\SliderController;
-
+use App\Http\Controllers\Api\Customer\RegisterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
@@ -56,4 +56,12 @@ Route::prefix('admin')->group(function () {
         // Users
         Route::apiResource('/users', App\Http\Controllers\Api\Admin\UserController::class, ['except' => ['create', 'edit'], 'as' => 'admin']);
     });
+});
+
+// group route with prefix "customer"
+Route::prefix('customer')->group(function () {
+    
+    // route register
+    Route::post('/register', [App\Http\Controllers\Api\Customer\RegisterController::class, 'store'], ['as' =>'customer']);
+
 });
