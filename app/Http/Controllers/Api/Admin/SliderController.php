@@ -30,7 +30,7 @@ class SliderController extends Controller
         $image = $request->file('image');
         $image->storeAs('public/sliders', $image->hashName());
 
-        // create product
+        // create slider
         $slider = Slider::create([
             'image' => $image->hashName(),
             'link'  => $request->link,
@@ -38,10 +38,10 @@ class SliderController extends Controller
 
         if ($slider) {
             // return success with Api Resource
-            return new SliderResource(true, 'Data Product Berhasil Disimpan!', $slider);
+            return new SliderResource(true, 'Data Slider Berhasil Disimpan!', $slider);
         }
         // return failed with Api Resource
-        return new SliderResource(false, 'Data Product Gagal Disimpan', null);
+        return new SliderResource(false, 'Data Slider Gagal Disimpan', null);
     }
 
     public function destroy(Slider $slider)
