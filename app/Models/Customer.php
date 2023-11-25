@@ -19,6 +19,10 @@ class Customer extends Authenticatable implements JWTSubject // <-- tambahkan "A
         'password',
         'remember_token'
     ];
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
 
     public function invoices()
     {
@@ -34,6 +38,10 @@ class Customer extends Authenticatable implements JWTSubject // <-- tambahkan "A
             get: fn ($value) => \Carbon\Carbon::locale('id')->parse($value)->translatedFormat('l, d F Y'),
         );
     }
+    // protected function getCreatedAtAttribute($value)
+    // {
+    //     return \Carbon\Carbon::parse($value)->locale('id')->translatedFormat('l, d F Y');
+    // }
 
     public function getJWTIdentifier() {
         return $this->getKey();

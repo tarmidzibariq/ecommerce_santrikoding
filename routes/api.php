@@ -64,4 +64,16 @@ Route::prefix('customer')->group(function () {
     // route register
     Route::post('/register', [App\Http\Controllers\Api\Customer\RegisterController::class, 'store'], ['as' =>'customer']);
 
+    // route login
+    Route::post('/login', [App\Http\Controllers\Api\Customer\LoginController::class, 'index', ['as' => 'customer']]);
+
+    // group route with middleware "auth:api_customer" 
+    Route::group(['middleware' => 'auth:api_customer'], function () {
+        // data user
+        Route::get('/user', [App\Http\Controllers\Api\Customer\LoginController::class, 'getUser', ['as' => 'customer']]);
+        // refresh token JWT
+        Route::get('/refresh', [App\Http\Controllers\Api\Customer\LoginController::class, 'refreshToken', ['as' => 'customer']]);
+        // logout
+        Route::post('/logout', [App\Http\Controllers\Api\Customer\LoginController::class, 'logout', ['as' => 'customer']]);
+    });
 });
