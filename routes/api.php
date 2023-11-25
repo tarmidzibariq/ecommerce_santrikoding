@@ -63,10 +63,10 @@ Route::prefix('customer')->group(function () {
     
     // route register
     Route::post('/register', [App\Http\Controllers\Api\Customer\RegisterController::class, 'store'], ['as' =>'customer']);
-
+    
     // route login
     Route::post('/login', [App\Http\Controllers\Api\Customer\LoginController::class, 'index', ['as' => 'customer']]);
-
+    
     // group route with middleware "auth:api_customer" 
     Route::group(['middleware' => 'auth:api_customer'], function () {
         // data user
@@ -77,5 +77,7 @@ Route::prefix('customer')->group(function () {
         Route::post('/logout', [App\Http\Controllers\Api\Customer\LoginController::class, 'logout', ['as' => 'customer']]);
         // dashboard
         Route::get('/dashboard', [App\Http\Controllers\Api\Customer\DashboardController::class, 'index', ['as' => 'customer']]);
+        // invoices resource
+        Route::apiResource('/invoices', App\Http\Controllers\Api\Customer\InvoiceController::class, ['except' => ['create','store', 'update', 'edit', 'destroy'], 'as' => 'customer']);
     });
 });
