@@ -83,3 +83,9 @@ Route::prefix('customer')->group(function () {
         Route::post('/reviews', [App\Http\Controllers\Api\Customer\ReviewController::class, 'store'], ['as' => 'customer']);
     });
 });
+Route::prefix('web')->group(function () {
+
+    // categories resource
+    Route::apiResource('/categories', App\Http\Controllers\Api\Web\CategoryController::class, ['except' => ['create', 'store', 'edit', 'update', 'destroy'], 'as' => 'web']);
+    
+});
